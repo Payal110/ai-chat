@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+.venv/
+env/
+venv/
+lib/
+lib64/
+bin/
+include/
+
+# Environment
+.env
+
+# Database
+app.db
+*.sqlite3
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Frontend Build
+dist/
+build/
+.vercel
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
