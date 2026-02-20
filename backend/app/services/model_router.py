@@ -64,16 +64,19 @@ def _get_client(provider: str) -> AsyncOpenAI:
         return AsyncOpenAI(
             api_key=settings.OPENAI_API_KEY,
             base_url=settings.OPENAI_BASE_URL,
+            http_client=httpx.AsyncClient(verify=settings.SSL_VERIFY)
         )
     elif provider == "deepseek":
         return AsyncOpenAI(
             api_key=settings.DEEPSEEK_API_KEY,
             base_url=settings.DEEPSEEK_BASE_URL,
+            http_client=httpx.AsyncClient(verify=settings.SSL_VERIFY)
         )
     elif provider == "competition":
         return AsyncOpenAI(
             api_key=settings.COMPETITION_API_KEY,
             base_url=settings.COMPETITION_BASE_URL,
+            http_client=httpx.AsyncClient(verify=settings.SSL_VERIFY)
         )
     else:
         raise ValueError(f"Unknown provider: {provider}")
@@ -178,7 +181,7 @@ async def _get_raw_http_response(messages: list[dict], model_id: str, image_base
         # "image": image_base64 # Uncomment if they want base64 image
     }
 
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(verify=settings.SSL_VERIFY) as client:
         response = await client.post(url, json=payload, headers=headers, timeout=30.0)
         response.raise_for_status()
         data = response.json()

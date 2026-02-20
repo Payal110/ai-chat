@@ -8,6 +8,8 @@ class Settings(BaseSettings):
     APP_DESCRIPTION: str = "Your intelligent AI-powered assistant"
     SECRET_KEY: str = "change-me-to-a-random-secret-key"
     DEMO_MODE: bool = True
+    SSL_VERIFY: bool = True
+
 
     # Database
     DATABASE_URL: str = "sqlite:///./chatbot.db"
